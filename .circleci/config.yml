@@ -1,0 +1,23 @@
+# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+        # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: 
+          name: Build and Push Docker image
+          command: |
+            docker build -t omarsayed/work:latest .
+            echo "$DOCKERHUB_PASSWORD" | docker login -u omarsayed --password-stdin
+            docker push omarsayed/work:latest
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      
+
