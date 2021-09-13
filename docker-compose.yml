@@ -1,0 +1,16 @@
+version: '3'
+services:
+  omar-node:
+    container_name: omar-app
+    networks:
+     mongodb_default:
+    restart: always
+    build: .
+    ports:
+      - 86:3000
+    volumes:
+      - ./:/code
+networks:
+     mongodb_default:
+       external: true
+
