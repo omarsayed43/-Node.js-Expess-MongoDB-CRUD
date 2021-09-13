@@ -23,10 +23,11 @@ jobs:
       - run:
           name: Deploy docker image
           command: |
-            ssh -O StrictHostKeyChecking=no omar@169.50.178.238 -p 9621 "docker login -u omarsayed -p $DOCKERHUB_PASSWORD"
-            ssh -O StrictHostKeyChecking=no omar@169.50.178.238 -p 9621 "docker stop omar-app || true && docker rm omar-app || true"
-            ssh -O StrictHostKeyChecking=no omar@169.50.178.238 -p 9621 "docker run -d --name omar-app --network mongodb_default omarsayed/work:latest "            
-        
+            ssh -o StrictHostKeyChecking=no omar@169.50.178.238 -p 9621 "docker login -u omarsayed -p $DOCKERHUB_PASSWORD"
+            ssh -o StrictHostKeyChecking=no omar@169.50.178.238 -p 9621 "docker stop omar-app || true && docker rm omar-app || true"
+            ssh -o StrictHostKeyChecking=no omar@169.50.178.238 -p 9621 "docker run -d --name omar-app \
+            --network mongodb_default \
+            omarsayed/work:latest"                  
 workflows:
   version: 2
   build-main:
