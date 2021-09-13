@@ -19,7 +19,7 @@ jobs:
             
       - add_ssh_keys:
           fingerprints:
-            - "c0:62:a1:78:31:cd:3d:c2:d0:a4:84:c8:3d:22:32:59"
+            - "e7:b8:5d:56:0a:bc:3e:47:11:39:56:ed:1d:ca:a2:2f"
       - run:
           name: Deploy docker image
           command: |
