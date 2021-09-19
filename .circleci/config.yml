@@ -27,7 +27,14 @@ jobs:
             ssh -o StrictHostKeyChecking=no omar@169.50.178.238 -p 9621 "docker stop omar-app || true && docker rm omar-app || true"
             ssh -o StrictHostKeyChecking=no omar@169.50.178.238 -p 9621 "docker run -d --name omar-app \
             --network mongodb_default \
-            omarsayed/work:latest"                  
+            omarsayed/work:latest"
+            ssh -o StrictHostKeyChecking=no omar@169.50.178.238 -p 9621 "
+             docker run \
+             --rm \
+             -e SONAR_HOST_URL="https://sonar-test.code95.info" \
+             -e SONAR_LOGIN="b07435ad10bf9dee60e24d6be906eb8744e635e9" \
+             -v "https://github.com/omarsayed43/-Node.js-Expess-MongoDB-CRUD:/usr/src" \
+             sonarsource/sonar-scanner-cli"
 workflows:
   version: 2
   build-main:
