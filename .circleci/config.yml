@@ -19,7 +19,6 @@ jobs:
           sonar_login: $SONARQUBE_TOKEN
           sonar_sources: .
 
-jobs:
   build:
     docker:
       - image: circleci/buildpack-deps:stretch
@@ -52,6 +51,6 @@ workflows:
   build_and_test:
     jobs:
       - test
-      - build
+      - build:
           requires:
             - test
